@@ -5,6 +5,8 @@
  */
 package farmatec;
 
+import Interfaz.LogIn;
+
 /**
  *
  * @author mac
@@ -15,7 +17,7 @@ public class FarmaTEC {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new LogIn().setVisible(true);
     }
     
 }

@@ -14,7 +14,8 @@ public class conexion {
     //Metodo para establecer conexion con la base de datos
     public static Connection establecerConexion(){
 
-        String url= "jdbc:sqlserver://LAPTOP-VB4EU9DH\\OASIS:1433;databaseName=Pharmacy"; //URL DANIEL
+    //    String url= "jdbc:sqlserver://LAPTOP-VB4EU9DH\\OASIS:1433;databaseName=Pharmacy"; //URL DANIEL
+        String url= "jdbc:sqlserver://LAPTOP-FPUD71GJ:1433;databaseName=Pharmacy"; // URL montero
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         }
@@ -23,7 +24,7 @@ public class conexion {
             "Error de conexion",JOptionPane.ERROR_MESSAGE);
         }
         try{
-            conexion= DriverManager.getConnection(url,"sa","sa");// LOS PARAMETROS DE LA getConnection son usuario sa y la contrasenia que hayan puesto
+            conexion= DriverManager.getConnection(url,"sa","sa123");// LOS PARAMETROS DE LA getConnection son usuario sa y la contrasenia que hayan puesto
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error" + e.getMessage(),

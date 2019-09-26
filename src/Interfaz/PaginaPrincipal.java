@@ -4,6 +4,23 @@
  * and open the template in the editor.
  */
 package Interfaz;
+import conexiones.*; 
+import static conexiones.conexion.Consulta;
+import java.io.*;
+import java.sql.*;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import com.itextpdf.text.DocumentException; //se encarga de capturar los posibles errores..
+import com.itextpdf.text.pdf.PdfPTable; //contiene el codigo necesario para tabular un archivo PDF
+import com.itextpdf.text.pdf.PdfWriter; // //contiene el codigo necesario para crear un archivo PDF
+import java.awt.HeadlessException;
+import java.util.Random;
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -11,6 +28,7 @@ package Interfaz;
  */
 public class PaginaPrincipal extends javax.swing.JFrame {
 
+    static ResultSet res;
     /**
      * Creates new form PaginaPrincipal
      */

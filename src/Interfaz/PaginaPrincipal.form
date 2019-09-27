@@ -109,34 +109,52 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonMejoresClientes" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButtonMontoRecauTipoPedido" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButtonMontoRecau" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jComboBoxSucursal" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxTipoPedido" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonMejoresClientes" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <Component id="jTextFechaInicial" min="-2" pref="150" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                                              <Component id="jLabel4" min="-2" pref="71" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                              <Component id="jTextFechaFinal" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="jButtonMontoRecauTipoPedido" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                              <Component id="jLabelMontoRecaudadoPorPedido" min="-2" pref="25" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jButtonMontoRecau" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                              <Component id="jLabelMontoRecaudado" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel5" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
+                                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="jTextFechaInicial" min="-2" pref="150" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                                                      <Component id="jLabel4" min="-2" pref="71" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                      <Component id="jTextFechaFinal" min="-2" pref="150" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="jComboBoxSucursal" alignment="0" pref="91" max="32767" attributes="0"/>
+                                                      <Component id="jComboBoxTipoPedido" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="136" max="32767" attributes="0"/>
+                              <EmptySpace pref="140" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -163,12 +181,20 @@
                                   <Component id="jComboBoxSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="jButtonMontoRecau" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButtonMontoRecau" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelMontoRecaudado" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonMontoRecauTipoPedido" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButtonMontoRecauTipoPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelMontoRecaudadoPorPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButtonMejoresClientes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="315" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" pref="91" max="-2" attributes="0"/>
+                              <EmptySpace pref="206" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -204,11 +230,9 @@
                     <Component class="javax.swing.JComboBox" name="jComboBoxTipoPedido">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
+                          <StringArray count="2">
+                            <StringItem index="0" value="Regular"/>
+                            <StringItem index="1" value="Special"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -242,15 +266,60 @@
                     <Component class="javax.swing.JComboBox" name="jComboBoxSucursal">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
+                          <StringArray count="3">
+                            <StringItem index="0" value="San Jose"/>
+                            <StringItem index="1" value="Cartago"/>
+                            <StringItem index="2" value="Heredia"/>
                           </StringArray>
                         </Property>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelMontoRecaudado">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelMontoRecaudadoPorPedido">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="jTableListaPedidos1">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="2" rowCount="3">
+                                <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                                <Column editable="true" title="Apellido" type="java.lang.Object"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -574,7 +643,7 @@
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
+                              <Title value="ID Orden "/>
                               <Editor/>
                               <Renderer/>
                             </Column>
@@ -978,7 +1047,7 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
+                                  <Title value="ID Orden "/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
@@ -1157,7 +1226,7 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
+                                  <Title value="ID Orden "/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>

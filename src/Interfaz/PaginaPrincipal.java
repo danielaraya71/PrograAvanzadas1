@@ -62,6 +62,10 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jButtonMejoresClientes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBoxSucursal = new javax.swing.JComboBox();
+        jLabelMontoRecaudado = new javax.swing.JLabel();
+        jLabelMontoRecaudadoPorPedido = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTableListaPedidos1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jComboBoxEscogerSucursal = new javax.swing.JComboBox<>();
@@ -160,7 +164,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         jLabel5.setText("Tipo pedido");
 
-        jComboBoxTipoPedido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoPedido.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Regular", "Special" }));
         jComboBoxTipoPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTipoPedidoActionPerformed(evt);
@@ -180,35 +184,63 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("Sucursal");
 
-        jComboBoxSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "San Jose", "Cartago", "Heredia" }));
+
+        jLabelMontoRecaudado.setText("0");
+
+        jLabelMontoRecaudadoPorPedido.setText("0");
+
+        jTableListaPedidos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido"
+            }
+        ));
+        jScrollPane6.setViewportView(jTableListaPedidos1);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonMejoresClientes)
-                    .addComponent(jButtonMontoRecauTipoPedido)
-                    .addComponent(jButtonMontoRecau)
-                    .addComponent(jLabel2)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxTipoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonMejoresClientes)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jTextFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(82, 82, 82)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jTextFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(136, Short.MAX_VALUE))
+                                .addComponent(jButtonMontoRecauTipoPedido)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabelMontoRecaudadoPorPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jButtonMontoRecau)
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabelMontoRecaudado))
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jTextFechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(82, 82, 82)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jTextFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBoxSucursal, javax.swing.GroupLayout.Alignment.LEADING, 0, 91, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxTipoPedido, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,12 +262,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jComboBoxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
-                .addComponent(jButtonMontoRecau)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonMontoRecau)
+                    .addComponent(jLabelMontoRecaudado))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonMontoRecauTipoPedido)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonMontoRecauTipoPedido)
+                    .addComponent(jLabelMontoRecaudadoPorPedido))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonMejoresClientes)
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -304,6 +342,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("ID Orden ");
+        }
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -377,6 +418,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         ));
         jScrollPane3.setViewportView(jTableListaPedidos);
+        if (jTableListaPedidos.getColumnModel().getColumnCount() > 0) {
+            jTableListaPedidos.getColumnModel().getColumn(2).setHeaderValue("ID Orden ");
+        }
 
         jLabel41.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
@@ -436,6 +480,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         ));
         jScrollPane5.setViewportView(jTableMontoPedidos);
+        if (jTableMontoPedidos.getColumnModel().getColumnCount() > 0) {
+            jTableMontoPedidos.getColumnModel().getColumn(2).setHeaderValue("ID Orden ");
+        }
 
         jButton8.setText("Consultar");
 
@@ -965,10 +1012,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelMontoRecaudado;
     private javax.swing.JLabel jLabelMontoRecaudadoAdmi;
     private javax.swing.JLabel jLabelMontoRecaudadoAdmi1;
     private javax.swing.JLabel jLabelMontoRecaudadoAdmi2;
     private javax.swing.JLabel jLabelMontoRecaudadoAdmi3;
+    private javax.swing.JLabel jLabelMontoRecaudadoPorPedido;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -979,10 +1028,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableCantidadPedidosFecha;
     private javax.swing.JTable jTableListaPedidos;
+    private javax.swing.JTable jTableListaPedidos1;
     private javax.swing.JTable jTableMontoPedidos;
     private javax.swing.JTextField jTextFechaFinal;
     private javax.swing.JTextField jTextFechaInicial;

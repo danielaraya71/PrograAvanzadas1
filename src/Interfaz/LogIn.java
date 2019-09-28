@@ -90,6 +90,15 @@ public class LogIn extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("LOGIN");
 
+        txtusername1.setText("102");
+
+        txtpassword1.setText("88789065");
+        txtpassword1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpassword1ActionPerformed(evt);
+            }
+        });
+
         jButton2.setText("Iniciar Sesión");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +188,10 @@ public class LogIn extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtpassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassword1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpassword1ActionPerformed
 
     /**
      * @param args the command line arguments

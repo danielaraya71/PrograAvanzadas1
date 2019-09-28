@@ -208,8 +208,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtusername1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="102"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtpassword1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="88789065"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpassword1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>

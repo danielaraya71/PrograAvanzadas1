@@ -4,19 +4,18 @@
  * and open the template in the editor.
  */
 package farmatec;
-
 /**
  *
  * @author Ericka
  */
 public class Pedido {
     private int idPharmacy;
-    private int IDOrder;
+    private int IdOrder;
     private String OrderDate;
     private int IdClient;
-    private int StatusOrder;
-    private int OrderType;
-    private String OrderDetail;
+    private int idStatus;
+    private int idOrderType;
+    private String detail;
 
     public int getIdPharmacy() {
         return idPharmacy;
@@ -26,12 +25,12 @@ public class Pedido {
         this.idPharmacy = idPharmacy;
     }
 
-    public int getIDOrder() {
-        return IDOrder;
+    public int getIdOrder() {
+        return IdOrder;
     }
 
-    public void setIDOrder(int IDOrder) {
-        this.IDOrder = IDOrder;
+    public void setIdOrder(int IdOrder) {
+        this.IdOrder = IdOrder;
     }
 
     public String getOrderDate() {
@@ -50,27 +49,29 @@ public class Pedido {
         this.IdClient = IdClient;
     }
 
-    public int getStatusOrder() {
-        return StatusOrder;
+    public int getIdStatus() {
+        return idStatus;
     }
 
-    public void setStatusOrder(int StatusOrder) {
-        this.StatusOrder = StatusOrder;
+    public void setIdStatus(int idStatus) {
+        this.idStatus = idStatus;
     }
 
-    public int getOrderType() {
-        return OrderType;
+    public int getIdOrderType() {
+        return idOrderType;
     }
 
-    public void setOrderType(int OrderType) {
-        this.OrderType = OrderType;
+    public void setIdOrderType(int idOrderType) {
+        this.idOrderType = idOrderType;
     }
 
-    public String getOrderDetail() {
-        return OrderDetail;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setOrderDetail(String OrderDetail) {
-        this.OrderDetail = OrderDetail;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
+
+    
 }

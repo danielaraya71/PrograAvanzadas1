@@ -85,18 +85,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jTextFieldIDOrder = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jTextFieldClientID = new javax.swing.JTextField();
         jTextFieldPharmacy = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        jComboBoxEscogerSucursal3 = new javax.swing.JComboBox<>();
-        jComboBoxEscogerSucursal4 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaDetallePedido = new javax.swing.JTextArea();
         jTextFieldFIMES3 = new javax.swing.JTextField();
         jTextFieldFIDIA2 = new javax.swing.JTextField();
         jTextFieldFIANIO3 = new javax.swing.JTextField();
         jTextFieldEstadoPedido = new javax.swing.JTextField();
         jTextFieldTipoPedido = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
         jComboBoxEscogerSucursal = new javax.swing.JComboBox<>();
@@ -335,15 +335,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxEscogerSucursal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Special" }));
-        jComboBoxEscogerSucursal3.setToolTipText("");
-
-        jComboBoxEscogerSucursal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Delivered", "Ready to deliver" }));
-        jComboBoxEscogerSucursal4.setToolTipText("");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jTextAreaDetallePedido.setColumns(20);
+        jTextAreaDetallePedido.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaDetallePedido);
 
         jTextFieldFIMES3.setText("10");
         jTextFieldFIMES3.addActionListener(new java.awt.event.ActionListener() {
@@ -365,6 +359,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 jTextFieldFIANIO3ActionPerformed(evt);
             }
         });
+
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Delivered = 1, Ready to deliver =0");
+
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Special = 1, Regular=0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -392,7 +392,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTextFieldIDOrder)
-                                .addComponent(jTextField6)
+                                .addComponent(jTextFieldClientID)
                                 .addComponent(jTextFieldPharmacy, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -401,7 +401,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jTextFieldFIDIA2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldFIANIO3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(567, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton7)
@@ -409,11 +409,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldTipoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldEstadoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(85, 85, 85)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxEscogerSucursal4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxEscogerSucursal3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 396, Short.MAX_VALUE))))
+                                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 300, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,22 +436,22 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldClientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(jComboBoxEscogerSucursal4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEstadoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldEstadoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel26)
-                            .addComponent(jComboBoxEscogerSucursal3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel26))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jTextFieldTipoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel30)
+                            .addComponent(jTextFieldTipoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel27)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -822,8 +822,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel39)
                             .addComponent(jTextFieldFIMES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldFIDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldFIANIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9))
+                            .addComponent(jTextFieldFIANIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -831,8 +830,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                             .addComponent(jTextFieldFFMES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldFFDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldFFANIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel40))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(jLabel40))))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
@@ -1101,8 +1100,30 @@ CargarListadoTipoMes () ;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFIANIO3ActionPerformed
     Pedido pedido = new Pedido();
+    procedimientos procedimiento= new procedimientos();
+    
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        pedido.setIdPharmacy(Integer.parseInt(jTextFieldIDOrder.getText().toString())); 
+        pedido.setIdPharmacy(Integer.parseInt(jTextFieldPharmacy.getText().toString()));
+        pedido.setIdOrder(Integer.parseInt(jTextFieldIDOrder.getText().toString()));
+        String fechaPedido = jTextFieldFIMES3.getText() + "/" + jTextFieldFIDIA2.getText() + "/" + jTextFieldFIANIO3.getText();
+        pedido.setOrderDate(fechaPedido);
+        pedido.setIdClient(Integer.parseInt(jTextFieldClientID.getText().toString()));
+        pedido.setIdStatus(Integer.parseInt(jTextFieldEstadoPedido.getText().toString()));
+        pedido.setIdOrderType(Integer.parseInt(jTextFieldTipoPedido.getText().toString()));
+        pedido.setDetail(jTextAreaDetallePedido.getText().toString());
+        
+        //Se hace la insercion en la tabla vehiculo en POO
+        int exito = 0;
+        exito= procedimiento.AgregarPedido (pedido.getIdPharmacy(), pedido.getIdOrder(), pedido.getOrderDate(),
+                pedido.getIdClient(),pedido.getIdStatus(), pedido.getIdOrderType(), pedido.getDetail());
+        if(exito>0){
+            JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente",
+                    "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "Los datos no se pudieron guardar\n"
+                    + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1115,8 +1136,6 @@ CargarListadoTipoMes () ;
     private javax.swing.JButton jButtonMontoRecauTipoPedido;
     private javax.swing.JButton jButtonMontopedidos;
     private javax.swing.JComboBox<String> jComboBoxEscogerSucursal;
-    private javax.swing.JComboBox<String> jComboBoxEscogerSucursal3;
-    private javax.swing.JComboBox<String> jComboBoxEscogerSucursal4;
     private javax.swing.JComboBox jComboBoxSucursal;
     private javax.swing.JComboBox<String> jComboBoxTipoOrden;
     private javax.swing.JComboBox jComboBoxTipoPedido;
@@ -1131,7 +1150,9 @@ CargarListadoTipoMes () ;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -1166,11 +1187,11 @@ CargarListadoTipoMes () ;
     private javax.swing.JTable jTableListaPedidos;
     private javax.swing.JTable jTableListaPedidos1;
     private javax.swing.JTable jTableMontoPedidos;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaDetallePedido;
     private javax.swing.JTextField jTextFechaFinal;
     private javax.swing.JTextField jTextFechaInicial;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextFieldClientID;
     private javax.swing.JTextField jTextFieldEstadoPedido;
     private javax.swing.JTextField jTextFieldFFANIO;
     private javax.swing.JTextField jTextFieldFFANIO1;

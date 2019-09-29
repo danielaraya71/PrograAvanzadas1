@@ -24,18 +24,18 @@ import com.itextpdf.text.pdf.PdfPTable; //contiene el
 import java.util.Date;
 //codigo necesario para tabular un archivo PDF
 
-
-
 /**
  *
  * @author Ericka
  */
 public class procedimientos {
     
-           public int AgregarPedido(int idPharmacy, int IDOrder,String OrderDate,int IdClient,int StatusOrder,int OrderType,String OrderDetail){
+           public int AgregarPedido(int idPharmacy, int IdOrder,String OrderDate,int IdClient,int idStatus,
+                   int idOrderType,String detail){
             Connection entrada= null;
             
-            String SSQL = "INSERT INTO cliente (idPharmacy, IDOrder, OrderDate, IdClient, StatusOrder, OrderType, OrderDetail) "
+            String SSQL = "INSERT INTO client_order (idPharmacy, IdOrder, OrderDate, IdClient, idStatus,"
+                    + " idOrderType, detail) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?)";
             
             int resultado = 0;
@@ -46,12 +46,12 @@ public class procedimientos {
 
                 PreparedStatement psql = entrada.prepareStatement(SSQL);
                 psql.setInt(1,idPharmacy);
-                psql.setInt(2,IDOrder);
+                psql.setInt(2,IdOrder);
                 psql.setString(3,OrderDate);
                 psql.setInt(4,IdClient);
-                psql.setInt(5,StatusOrder);
-                psql.setInt(6,OrderType);
-                psql.setString(7,OrderDetail);              
+                psql.setInt(5,idStatus);
+                psql.setInt(6,idOrderType);
+                psql.setString(7,detail);              
 
                 resultado = psql.executeUpdate();
 

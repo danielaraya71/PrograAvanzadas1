@@ -979,6 +979,29 @@ public int contar_num_ordenes(){
   
      return n;
 }
+    private void cargarListadoClientes() {
+         DefaultTableModel modelo = (DefaultTableModel) jTableListaPedidos.getModel();
+               modelo.setRowCount(0);
+           //    Date fechaInicio =  (jDateChooserFIR2.getDate());
+            //   Date fecha_final =  (jDateChooserFFR2 .getDate());
+            String fechaInicio = jTextFieldFIMES.getText() + "/" + jTextFieldFIDIA.getText() + "/" + jTextFieldFIANIO.getText();
+            String fecha_final = jTextFieldFFMES.getText() + "/" + jTextFieldFFDIA.getText() + "/" + jTextFieldFFANIO.getText();  
+          
+           res =conexiones.conexion.Consulta("select firstName, lastName, idOrder from client join client_order on client.idClient = client_order.idClient where "
+                   + "orderDate between '"+fechaInicio+"' and '"+fecha_final+"'" ); 
+           try {
+               while (res.next()){
+                     Vector vec = new Vector();
+                     vec.add(res.getString(1));
+                     vec.add(res.getString(2));
+                     vec.add(res.getInt(3));
+                     modelo.addRow(vec);
+                     jTableListaPedidos.setModel(modelo);
+                }
+           }   
+                catch (Exception e) {
+                }
+    }
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     cargarListadoClientes();
     jLabelMontoRecaudadoAdmi3.setText(""+contar_num_ordenes()+"");
@@ -1234,27 +1257,5 @@ CargarListadoTipoMes () ;
 
  
           
-    private void cargarListadoClientes() {
-         DefaultTableModel modelo = (DefaultTableModel) jTableListaPedidos.getModel();
-               modelo.setRowCount(0);
-           //    Date fechaInicio =  (jDateChooserFIR2.getDate());
-            //   Date fecha_final =  (jDateChooserFFR2 .getDate());
-            String fechaInicio = jTextFieldFIMES.getText() + "/" + jTextFieldFIDIA.getText() + "/" + jTextFieldFIANIO.getText();
-            String fecha_final = jTextFieldFFMES.getText() + "/" + jTextFieldFFDIA.getText() + "/" + jTextFieldFFANIO.getText();  
-          
-           res =conexiones.conexion.Consulta("select firstName, lastName, idOrder from client join client_order on client.idClient = client_order.idClient where "
-                   + "orderDate between '"+fechaInicio+"' and '"+fecha_final+"'" ); 
-           try {
-               while (res.next()){
-                     Vector vec = new Vector();
-                     vec.add(res.getString(1));
-                     vec.add(res.getString(2));
-                     vec.add(res.getInt(3));
-                     modelo.addRow(vec);
-                     jTableListaPedidos.setModel(modelo);
-                }
-           }   
-                catch (Exception e) {
-                }
-    }
+
 }

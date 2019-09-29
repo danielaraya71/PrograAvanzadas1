@@ -958,14 +958,31 @@ public void CargarMontoTotal() {
         CargarMontoTotal() ;
   
     }//GEN-LAST:event_jButtonDineroRecaudadoActionPerformed
+public int contar_num_ordenes(){ 
+     int n= 0;
+     String fechaInicio = jTextFieldFIMES.getText() + "/" + jTextFieldFIDIA.getText() + "/" + jTextFieldFIANIO.getText();
+     String fecha_final = jTextFieldFFMES.getText() + "/" + jTextFieldFFDIA.getText() + "/" + jTextFieldFFANIO.getText();  
+          
+        res =conexiones.conexion.Consulta("select COUNT (idOrder )from client join client_order on client.idClient = client_order.idClient where "
+                   + "orderDate between '"+fechaInicio+"' and '"+fecha_final+"'" ); 
+     
 
+        try {
+            // chequeo que el result set no sea vacío, moviendo el cursor a la
+            // primer fila. (El cursor inicia antes de la primer fila)
+            if(res.next()) {
+                //Si hay resultados obtengo el valor.
+                n= res.getInt(1);
+            }  } catch (SQLException ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  
+     return n;
+}
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     cargarListadoClientes();
-     String fechaInicio = jTextFieldFIMES.getText() + "/" + jTextFieldFIDIA.getText() + "/" + jTextFieldFIANIO.getText();
-            String fecha_final = jTextFieldFFMES.getText() + "/" + jTextFieldFFDIA.getText() + "/" + jTextFieldFFANIO.getText();  
-          
-           res =conexiones.conexion.Consulta("select COUNT (idOrder )from client join client_order on client.idClient = client_order.idClient where "
-                   + "orderDate between '"+fechaInicio+"' and '"+fecha_final+"'" ); 
+    jLabelMontoRecaudadoAdmi3.setText(""+contar_num_ordenes()+"");
+     
       //     jLabelMontoRecaudadoAdmi3.setText(""+res.getInt("idOrder")+"");
     }//GEN-LAST:event_jButton5ActionPerformed
 

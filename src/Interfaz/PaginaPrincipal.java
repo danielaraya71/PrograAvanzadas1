@@ -5,6 +5,7 @@
  */
 package Interfaz;
 import conexiones.*; 
+import farmatec.*; 
 import static conexiones.conexion.Consulta;
 import java.io.*;
 import java.sql.*;
@@ -19,10 +20,13 @@ import com.itextpdf.text.pdf.PdfWriter; // //contiene el codigo necesario para c
 import java.awt.HeadlessException;
 import java.util.Random;
 import java.awt.print.PrinterException;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -31,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 public class PaginaPrincipal extends javax.swing.JFrame {
 
     static ResultSet res;
+
     /**
      * Creates new form PaginaPrincipal
      */
@@ -135,32 +140,39 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jLabelMontoRecaudadoAdmi2 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jDateChooserFIR2 = new com.toedter.calendar.JDateChooser();
         jLabel40 = new javax.swing.JLabel();
-        jDateChooserFFR2 = new com.toedter.calendar.JDateChooser();
         jButton5 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableListaPedidos = new javax.swing.JTable();
         jLabel41 = new javax.swing.JLabel();
         jLabelMontoRecaudadoAdmi3 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jDateChooserFI = new com.toedter.calendar.JDateChooser();
-        jLabel44 = new javax.swing.JLabel();
-        jDateChooserFF = new com.toedter.calendar.JDateChooser();
         jButtonMontopedidos = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableCantidadPedidosFecha = new javax.swing.JTable();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jDateChooserFIRPedidos = new com.toedter.calendar.JDateChooser();
         jComboBoxTipoOrden = new javax.swing.JComboBox<>();
         jLabel48 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableMontoPedidos = new javax.swing.JTable();
         jButton8 = new javax.swing.JButton();
-        jTextFieldFI = new javax.swing.JTextField();
-        jTextFieldFF = new javax.swing.JTextField();
+        jTextFieldFIMES = new javax.swing.JTextField();
+        jTextFieldFIDIA = new javax.swing.JTextField();
+        jTextFieldFIANIO = new javax.swing.JTextField();
+        jTextFieldFFANIO = new javax.swing.JTextField();
+        jTextFieldFFDIA = new javax.swing.JTextField();
+        jTextFieldFFMES = new javax.swing.JTextField();
+        jLabel47 = new javax.swing.JLabel();
+        jTextFieldFIMES1 = new javax.swing.JTextField();
+        jTextFieldFIDIA1 = new javax.swing.JTextField();
+        jTextFieldFIANIO1 = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
+        jTextFieldFFMES1 = new javax.swing.JTextField();
+        jTextFieldFFDIA1 = new javax.swing.JTextField();
+        jTextFieldFFANIO1 = new javax.swing.JTextField();
+        jTextFieldFIMES2 = new javax.swing.JTextField();
+        jTextFieldFIANIO2 = new javax.swing.JTextField();
 
         jTextField2.setText("jTextField2");
 
@@ -517,13 +529,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jLabel42.setForeground(new java.awt.Color(255, 255, 255));
         jLabel42.setText("Monto de pedidos según cliente para un rango de fechas específico");
 
-        jLabel43.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel43.setText("Fecha Inicio");
-
-        jLabel44.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel44.setText("Fecha final");
-
         jButtonMontopedidos.setText("Consultar");
+        jButtonMontopedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMontopedidosActionPerformed(evt);
+            }
+        });
 
         jTableCantidadPedidosFecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -543,7 +554,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jLabel45.setText("Listado de pedidos de un tipo en un mes en especifico");
 
         jLabel46.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel46.setText("Fecha Inicio");
+        jLabel46.setText("Mes y año a Consultar");
 
         jComboBoxTipoOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Special" }));
         jComboBoxTipoOrden.setToolTipText("");
@@ -559,13 +570,10 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Monto promedio"
+                "Nombre", "Apellido", "Monto del pedido "
             }
         ));
         jScrollPane5.setViewportView(jTableMontoPedidos);
-        if (jTableMontoPedidos.getColumnModel().getColumnCount() > 0) {
-            jTableMontoPedidos.getColumnModel().getColumn(2).setHeaderValue("ID Orden ");
-        }
 
         jButton8.setText("Consultar");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -574,17 +582,107 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldFI.setText("10/10/2000");
-        jTextFieldFI.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldFIMES.setText("10");
+        jTextFieldFIMES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFIActionPerformed(evt);
+                jTextFieldFIMESActionPerformed(evt);
             }
         });
 
-        jTextFieldFF.setText("10/10/2026");
-        jTextFieldFF.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldFIDIA.setText("01");
+        jTextFieldFIDIA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFFActionPerformed(evt);
+                jTextFieldFIDIAActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFIANIO.setText("2018");
+        jTextFieldFIANIO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFIANIOActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFFANIO.setText("2025");
+        jTextFieldFFANIO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFFANIOActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFFDIA.setText("23");
+        jTextFieldFFDIA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFFDIAActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFFMES.setText("06");
+        jTextFieldFFMES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFFMESActionPerformed(evt);
+            }
+        });
+
+        jLabel47.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel47.setText("Fecha Inicio");
+
+        jTextFieldFIMES1.setText("05");
+        jTextFieldFIMES1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFIMES1ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFIDIA1.setText("22");
+        jTextFieldFIDIA1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFIDIA1ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFIANIO1.setText("2015");
+        jTextFieldFIANIO1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFIANIO1ActionPerformed(evt);
+            }
+        });
+
+        jLabel49.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel49.setText("Fecha final");
+
+        jTextFieldFFMES1.setText("12");
+        jTextFieldFFMES1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFFMES1ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFFDIA1.setText("17");
+        jTextFieldFFDIA1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFFDIA1ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFFANIO1.setText("2020");
+        jTextFieldFFANIO1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFFANIO1ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFIMES2.setText("08");
+        jTextFieldFIMES2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFIMES2ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldFIANIO2.setText("2019");
+        jTextFieldFIANIO2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFIANIO2ActionPerformed(evt);
             }
         });
 
@@ -593,55 +691,60 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                            .addGap(122, 122, 122)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addComponent(jLabel43)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jDateChooserFI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(62, 62, 62)
-                                    .addComponent(jLabel44)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jDateChooserFF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonMontopedidos))
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addGap(4, 4, 4)
-                                    .addComponent(jLabel46)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jDateChooserFIRPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(47, 47, 47)
-                                    .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBoxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButton8))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(135, 135, 135)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(160, 160, 160)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(93, 93, 93)
+                            .addComponent(jLabel46)
+                            .addGap(30, 30, 30)
+                            .addComponent(jTextFieldFIMES2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextFieldFIANIO2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(54, 54, 54)
+                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboBoxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton8))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
                             .addGap(149, 149, 149)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel41)
                                 .addComponent(jLabelMontoRecaudadoAdmi3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(38, 38, 38)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(93, 93, 93)
+                            .addComponent(jLabel37)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel37)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel47)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFIMES1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFIDIA1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFIANIO1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel49)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFFMES1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFFDIA1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldFFANIO1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonMontopedidos)))
+                .addContainerGap(194, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel38)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelMontoRecaudadoAdmi2)
@@ -654,68 +757,71 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                         .addComponent(jComboBoxEscogerSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel39)
-                        .addGap(50, 50, 50)
-                        .addComponent(jDateChooserFIR2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel40)
-                        .addGap(44, 44, 44)
-                        .addComponent(jDateChooserFFR2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton5)
-                        .addGap(44, 44, 44)
-                        .addComponent(jTextFieldFI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(jTextFieldFF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel45)
                             .addComponent(jLabel42))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel38)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel39)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldFIMES, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldFIDIA, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldFIANIO, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel40)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldFFMES, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldFFDIA, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldFFANIO, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton5)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel36)
-                                        .addComponent(jComboBoxEscogerSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addGap(28, 28, 28)
-                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel35)
-                                        .addComponent(jButtonDineroRecaudado))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel40, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel37)
-                                        .addComponent(jLabelMontoRecaudadoAdmi2))
-                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel38)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel39))
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                            .addGap(50, 50, 50)
-                                            .addComponent(jDateChooserFFR2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addComponent(jDateChooserFIR2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel36)
+                                    .addComponent(jComboBoxEscogerSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel35)
+                                    .addComponent(jButtonDineroRecaudado))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabelMontoRecaudadoAdmi2))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel38)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel39)
+                            .addComponent(jTextFieldFIMES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFIDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFIANIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton5)
-                            .addComponent(jTextFieldFI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldFF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldFFMES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFFDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFFANIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel40))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
@@ -728,27 +834,36 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMontopedidos)
-                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jDateChooserFI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel43))
-                    .addComponent(jDateChooserFF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel47)
+                            .addComponent(jTextFieldFIMES1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFIDIA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFIANIO1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldFFMES1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldFFDIA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldFFANIO1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel49)))
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel45)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel46)
-                        .addComponent(jDateChooserFIRPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel46)
+                            .addComponent(jTextFieldFIMES2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFIANIO2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel48)))
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Modulo Administrador", jPanel6);
@@ -802,21 +917,27 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     cargarListadoClientes();
+     String fechaInicio = jTextFieldFIMES.getText() + "/" + jTextFieldFIDIA.getText() + "/" + jTextFieldFIANIO.getText();
+            String fecha_final = jTextFieldFFMES.getText() + "/" + jTextFieldFFDIA.getText() + "/" + jTextFieldFFANIO.getText();  
+          
+           res =conexiones.conexion.Consulta("select COUNT (idOrder )from client join client_order on client.idClient = client_order.idClient where "
+                   + "orderDate between '"+fechaInicio+"' and '"+fecha_final+"'" ); 
+      //     jLabelMontoRecaudadoAdmi3.setText(""+res.getInt("idOrder")+"");
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextFieldFIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIActionPerformed
+    private void jTextFieldFIMESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIMESActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFIActionPerformed
-
-    private void jTextFieldFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFFActionPerformed
-public void CargarReserva () {
+    }//GEN-LAST:event_jTextFieldFIMESActionPerformed
+public void CargarListadoTipoMes () {
                DefaultTableModel modelo = (DefaultTableModel) jTableCantidadPedidosFecha.getModel();
                modelo.setRowCount(0);
+               String fechaInicio3 = jTextFieldFIMES2.getText() + "/" + 01 + "/" + jTextFieldFIANIO2.getText();
+            String fecha_final3 = jTextFieldFIMES2.getText() + "/" +30 + "/" + jTextFieldFIANIO2.getText();  
+        
            res =conexiones.conexion.Consulta ("select client_order.idOrder, price from client_order join orderDrug on client_order.idOrder= orderDrug.idOrder "
                    + "inner join  drugs on orderDrug.idDrug= drugs.idDrug inner join order_type on client_order.idOrderType ="
-                   + "order_type.idOrderType where order_type.orderDetail ='"+jComboBoxTipoOrden.getSelectedItem().toString()+"'");  
+                   + "order_type.idOrderType where order_type.orderDetail ='"+jComboBoxTipoOrden.getSelectedItem().toString()+"'"
+                           + " and orderDate between  '"+fechaInicio3+"' and '"+fecha_final3+"'");  
            try {
                while (res.next()){
                      Vector vec = new Vector();
@@ -835,8 +956,93 @@ public void CargarReserva () {
 //	inner join  drugs on orderDrug.idDrug= drugs.idDrug inner join order_type on client_order.idOrderType = 
 //		order_type.idOrderType where order_type.orderDetail = 'Regular'        // TODO add your handling code here:
 
-CargarReserva ();
+CargarListadoTipoMes () ;
+//Falta el filtro por fecha
     }//GEN-LAST:event_jButton8ActionPerformed
+    private void CargarListadoPeriodoMonto () {
+         DefaultTableModel modelo = (DefaultTableModel) jTableMontoPedidos.getModel();
+               modelo.setRowCount(0);
+           //    Date fechaInicio =  (jDateChooserFIR2.getDate());
+            //   Date fecha_final =  (jDateChooserFFR2 .getDate());
+            String fechaInicio2 = jTextFieldFIMES1.getText() + "/" + jTextFieldFIDIA1.getText() + "/" + jTextFieldFIANIO1.getText();
+            String fecha_final2 = jTextFieldFFMES1.getText() + "/" + jTextFieldFFDIA1.getText() + "/" + jTextFieldFFANIO1.getText();  
+        
+           res =conexiones.conexion.Consulta("select firstName, lastName, price from client join client_order on client_order.idClient= client.idClient"
+                   + " inner join orderDrug on client_order.idOrder= orderDrug.idOrder inner join drugs on orderDrug.idDrug= "
+                   + " drugs.idDrug where orderDate between  '"+fechaInicio2+"' and '"+fecha_final2+"'");
+           try {
+               while (res.next()){
+                     Vector vec = new Vector();
+                     vec.add(res.getString(1));
+                     vec.add(res.getString(2));
+                     vec.add(res.getInt(3));
+                     modelo.addRow(vec);
+                     jTableMontoPedidos.setModel(modelo);
+                }
+           }   
+                catch (Exception e) {
+                }
+    } 
+
+    private void jButtonMontopedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMontopedidosActionPerformed
+       // ESTA ES LA CONSULTA SQL QUE FUNCIONA EN SU TOTALIDAD
+        //    select firstName, lastName, price from client join client_order on client_order.idClient= client.idClient
+	//	inner join orderDrug on client_order.idOrder= orderDrug.idOrder inner join drugs on orderDrug.idDrug= 
+	//	drugs.idDrug where orderDate between '10/10/2000' and '10/10/2025' ;
+        CargarListadoPeriodoMonto ();
+    }//GEN-LAST:event_jButtonMontopedidosActionPerformed
+
+    private void jTextFieldFIDIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIDIAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFIDIAActionPerformed
+
+    private void jTextFieldFIANIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIANIOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFIANIOActionPerformed
+
+    private void jTextFieldFFANIOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFFANIOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFFANIOActionPerformed
+
+    private void jTextFieldFFDIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFFDIAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFFDIAActionPerformed
+
+    private void jTextFieldFFMESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFFMESActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFFMESActionPerformed
+
+    private void jTextFieldFIMES1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIMES1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFIMES1ActionPerformed
+
+    private void jTextFieldFIDIA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIDIA1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFIDIA1ActionPerformed
+
+    private void jTextFieldFIANIO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIANIO1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFIANIO1ActionPerformed
+
+    private void jTextFieldFFMES1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFFMES1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFFMES1ActionPerformed
+
+    private void jTextFieldFFDIA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFFDIA1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFFDIA1ActionPerformed
+
+    private void jTextFieldFFANIO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFFANIO1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFFANIO1ActionPerformed
+
+    private void jTextFieldFIMES2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIMES2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFIMES2ActionPerformed
+
+    private void jTextFieldFIANIO2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFIANIO2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFIANIO2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
@@ -853,12 +1059,7 @@ CargarReserva ();
     private javax.swing.JComboBox jComboBoxSucursal;
     private javax.swing.JComboBox<String> jComboBoxTipoOrden;
     private javax.swing.JComboBox jComboBoxTipoPedido;
-    private com.toedter.calendar.JDateChooser jDateChooserFF;
-    private com.toedter.calendar.JDateChooser jDateChooserFFR2;
-    private com.toedter.calendar.JDateChooser jDateChooserFI;
-    private com.toedter.calendar.JDateChooser jDateChooserFIR2;
     private com.toedter.calendar.JDateChooser jDateChooserFIR3;
-    private com.toedter.calendar.JDateChooser jDateChooserFIRPedidos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -880,11 +1081,11 @@ CargarReserva ();
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelMontoRecaudado;
     private javax.swing.JLabel jLabelMontoRecaudadoAdmi2;
@@ -912,19 +1113,32 @@ CargarReserva ();
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextFieldFF;
-    private javax.swing.JTextField jTextFieldFI;
+    private javax.swing.JTextField jTextFieldFFANIO;
+    private javax.swing.JTextField jTextFieldFFANIO1;
+    private javax.swing.JTextField jTextFieldFFDIA;
+    private javax.swing.JTextField jTextFieldFFDIA1;
+    private javax.swing.JTextField jTextFieldFFMES;
+    private javax.swing.JTextField jTextFieldFFMES1;
+    private javax.swing.JTextField jTextFieldFIANIO;
+    private javax.swing.JTextField jTextFieldFIANIO1;
+    private javax.swing.JTextField jTextFieldFIANIO2;
+    private javax.swing.JTextField jTextFieldFIDIA;
+    private javax.swing.JTextField jTextFieldFIDIA1;
+    private javax.swing.JTextField jTextFieldFIMES;
+    private javax.swing.JTextField jTextFieldFIMES1;
+    private javax.swing.JTextField jTextFieldFIMES2;
     // End of variables declaration//GEN-END:variables
 
-    
-                
+ 
+          
     private void cargarListadoClientes() {
          DefaultTableModel modelo = (DefaultTableModel) jTableListaPedidos.getModel();
                modelo.setRowCount(0);
-           //    Calendar fechaInicio =  (jDateChooserFIR2.getCalendar());
-            //   Calendar fecha_final =  (jDateChooserFFR2 .getCalendar());
-           String fechaInicio =  (jTextFieldFI.getText());
-          String fecha_final =  (jTextFieldFI.getText());    
+           //    Date fechaInicio =  (jDateChooserFIR2.getDate());
+            //   Date fecha_final =  (jDateChooserFFR2 .getDate());
+            String fechaInicio = jTextFieldFIMES.getText() + "/" + jTextFieldFIDIA.getText() + "/" + jTextFieldFIANIO.getText();
+            String fecha_final = jTextFieldFFMES.getText() + "/" + jTextFieldFFDIA.getText() + "/" + jTextFieldFFANIO.getText();  
+          
            res =conexiones.conexion.Consulta("select firstName, lastName, idOrder from client join client_order on client.idClient = client_order.idClient where "
                    + "orderDate between '"+fechaInicio+"' and '"+fecha_final+"'" ); 
            try {

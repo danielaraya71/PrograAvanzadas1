@@ -115,7 +115,7 @@
                                           <Group type="102" attributes="0">
                                               <Component id="jButtonMontoRecauTipoPedido" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                              <Component id="jLabelMontoRecaudadoPorPedido" min="-2" pref="25" max="-2" attributes="0"/>
+                                              <Component id="jLabelMontoRecaudadoPorPedido" min="-2" pref="94" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jButtonMontoRecau" min="-2" max="-2" attributes="0"/>
@@ -139,8 +139,8 @@
                                                       <Component id="jTextFechaFinal" min="-2" pref="150" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="jComboBoxSucursal" alignment="0" pref="91" max="32767" attributes="0"/>
-                                                      <Component id="jComboBoxTipoPedido" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="jTextFieldSucursal" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="jComboBoxTipoPedido" alignment="0" pref="91" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -175,7 +175,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -191,7 +191,7 @@
                               <Component id="jButtonMejoresClientes" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jScrollPane6" min="-2" pref="91" max="-2" attributes="0"/>
-                              <EmptySpace pref="197" max="32767" attributes="0"/>
+                              <EmptySpace pref="202" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -249,6 +249,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Consultar monto recaudado seg&#xfa;n tipo de pedido"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMontoRecauTipoPedidoActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonMejoresClientes">
                       <Properties>
@@ -259,20 +262,6 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Sucursal"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBoxSucursal">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="3">
-                            <StringItem index="0" value="San Jose"/>
-                            <StringItem index="1" value="Cartago"/>
-                            <StringItem index="2" value="Heredia"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxSucursalActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabelMontoRecaudado">
                       <Properties>
@@ -320,6 +309,8 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JTextField" name="jTextFieldSucursal">
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>

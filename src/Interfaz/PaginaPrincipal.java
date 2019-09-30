@@ -69,11 +69,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jButtonMontoRecauTipoPedido = new javax.swing.JButton();
         jButtonMejoresClientes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBoxSucursal = new javax.swing.JComboBox();
         jLabelMontoRecaudado = new javax.swing.JLabel();
         jLabelMontoRecaudadoPorPedido = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableListaPedidos1 = new javax.swing.JTable();
+        jTextFieldSucursal = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -175,12 +175,15 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonMontoRecauTipoPedido.setText("Consultar monto recaudado según tipo de pedido");
+        jButtonMontoRecauTipoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMontoRecauTipoPedidoActionPerformed(evt);
+            }
+        });
 
         jButtonMejoresClientes.setText("Tres mejores clientes");
 
         jLabel1.setText("Sucursal");
-
-        jComboBoxSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "San Jose", "Cartago", "Heredia" }));
 
         jLabelMontoRecaudado.setText("0");
 
@@ -211,7 +214,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jButtonMontoRecauTipoPedido)
                                 .addGap(46, 46, 46)
-                                .addComponent(jLabelMontoRecaudadoPorPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabelMontoRecaudadoPorPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jButtonMontoRecau)
                                 .addGap(39, 39, 39)
@@ -231,8 +234,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                                         .addGap(12, 12, 12)
                                         .addComponent(jTextFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jComboBoxSucursal, javax.swing.GroupLayout.Alignment.LEADING, 0, 91, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxTipoPedido, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addComponent(jTextFieldSucursal, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBoxTipoPedido, javax.swing.GroupLayout.Alignment.LEADING, 0, 91, Short.MAX_VALUE))))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -256,7 +259,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBoxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonMontoRecau)
@@ -269,7 +272,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButtonMejoresClientes)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -920,7 +923,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFechaFinalActionPerformed
     public void consultaGerente1(){
-        String Sucursal = (jComboBoxSucursal.getSelectedItem().toString() );
+        String Sucursal = (jTextFieldSucursal.getText() );
         String Consulta ;
         switch (Sucursal){
             case "Heredia":
@@ -956,6 +959,87 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 }   
                      catch (Exception e) {
                         }
+                break;
+        }
+    }
+    
+    //Funcion que determina el monto total de una sucursal para un tipo de pedido y periodo en especifico
+    public void consultaGerente2(){
+        String Sucursal = (jTextFieldSucursal.getText() );
+        String Consulta ;
+        switch (Sucursal){
+            case "Heredia":
+                if (jComboBoxTipoPedido.getSelectedItem().toString()=="Regular"){
+                    Consulta = "select dbo.tipoPedidoConsultaGerente ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',0,202) as monto";
+                    res =conexiones.conexion.Consulta(Consulta);
+                    try {
+                        while (res.next()){
+                             jLabelMontoRecaudadoPorPedido.setText(""+res.getString("monto")+"");
+                         }
+                    }   
+                         catch (Exception e) {
+                            }
+                }
+                else{
+                    Consulta = "select dbo.tipoPedidoConsultaGerente ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',1,202) as monto";
+                    res =conexiones.conexion.Consulta(Consulta);
+                    try {
+                        while (res.next()){
+                             jLabelMontoRecaudadoPorPedido.setText(""+res.getString("monto")+"");
+                         }
+                    }   
+                         catch (Exception e) {
+                            }                    
+                }
+
+                break;
+            case "San Jose":
+                if (jComboBoxTipoPedido.getSelectedItem().toString()=="Regular"){
+                    Consulta = "select dbo.tipoPedidoConsultaGerente ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',0,201) as monto";
+                    res =conexiones.conexion.Consulta(Consulta);
+                    try {
+                        while (res.next()){
+                             jLabelMontoRecaudadoPorPedido.setText(""+res.getString("monto")+"");
+                         }
+                    }   
+                         catch (Exception e) {
+                            }
+                }
+                else{
+                    Consulta = "select dbo.tipoPedidoConsultaGerente ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',1,201) as monto";
+                    res =conexiones.conexion.Consulta(Consulta);
+                    try {
+                        while (res.next()){
+                             jLabelMontoRecaudadoPorPedido.setText(""+res.getString("monto")+"");
+                         }
+                    }   
+                         catch (Exception e) {
+                            }                    
+                }
+                break;
+            case "Cartago":
+                if (jComboBoxTipoPedido.getSelectedItem().toString()=="Regular"){
+                    Consulta = "select dbo.tipoPedidoConsultaGerente ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',0,203) as monto";
+                    res =conexiones.conexion.Consulta(Consulta);
+                    try {
+                        while (res.next()){
+                             jLabelMontoRecaudadoPorPedido.setText(""+res.getString("monto")+"");
+                         }
+                    }   
+                         catch (Exception e) {
+                            }
+                }
+                else{
+                    Consulta = "select dbo.tipoPedidoConsultaGerente ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',1,203) as monto";
+                    res =conexiones.conexion.Consulta(Consulta);
+                    try {
+                        while (res.next()){
+                             jLabelMontoRecaudadoPorPedido.setText(""+res.getString("monto")+"");
+                         }
+                    }   
+                         catch (Exception e) {
+                            }                    
+                }
                 break;
         }
     }
@@ -1191,6 +1275,10 @@ CargarListadoTipoMes () ;
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButtonMontoRecauTipoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMontoRecauTipoPedidoActionPerformed
+        consultaGerente2();
+    }//GEN-LAST:event_jButtonMontoRecauTipoPedidoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
@@ -1201,7 +1289,6 @@ CargarListadoTipoMes () ;
     private javax.swing.JButton jButtonMontoRecauTipoPedido;
     private javax.swing.JButton jButtonMontopedidos;
     private javax.swing.JComboBox<String> jComboBoxEscogerSucursal;
-    private javax.swing.JComboBox jComboBoxSucursal;
     private javax.swing.JComboBox<String> jComboBoxTipoOrden;
     private javax.swing.JComboBox jComboBoxTipoPedido;
     private javax.swing.JLabel jLabel1;
@@ -1277,6 +1364,7 @@ CargarListadoTipoMes () ;
     private javax.swing.JTextField jTextFieldFIMES3;
     private javax.swing.JTextField jTextFieldIDOrder;
     private javax.swing.JTextField jTextFieldPharmacy;
+    private javax.swing.JTextField jTextFieldSucursal;
     private javax.swing.JTextField jTextFieldTipoPedido;
     // End of variables declaration//GEN-END:variables
 

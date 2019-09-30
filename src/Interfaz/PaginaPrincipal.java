@@ -913,12 +913,53 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxTipoPedidoActionPerformed
 
     private void jButtonMontoRecauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMontoRecauActionPerformed
-        // TODO add your handling code here:
+        consultaGerente1();
     }//GEN-LAST:event_jButtonMontoRecauActionPerformed
 
     private void jTextFechaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFechaFinalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFechaFinalActionPerformed
+    public void consultaGerente1(){
+        String Sucursal = (jComboBoxSucursal.getSelectedItem().toString() );
+        String Consulta ;
+        switch (Sucursal){
+            case "Heredia":
+                Consulta = "select dbo.consultaGerentePeriodo ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',202) as monto";
+                System.out.println(Consulta);
+                res =conexiones.conexion.Consulta(Consulta);
+                try {
+                    while (res.next()){
+                         jLabelMontoRecaudado.setText(""+res.getString("monto")+"");
+                     }
+                }   
+                     catch (Exception e) {
+                        }
+                break;
+            case "San Jose":
+                Consulta = "select dbo.consultaGerentePeriodo ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',201) as monto";
+                res =conexiones.conexion.Consulta(Consulta);
+                try {
+                    while (res.next()){
+                         jLabelMontoRecaudado.setText(""+res.getString("monto")+"");
+                     }
+                }   
+                     catch (Exception e) {
+                        }
+                break;
+            case "Cartago":
+                Consulta = "select dbo.consultaGerentePeriodo ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"',203) as monto";
+                res =conexiones.conexion.Consulta(Consulta);
+                try {
+                    while (res.next()){
+                         jLabelMontoRecaudado.setText(""+res.getString("monto")+"");
+                     }
+                }   
+                     catch (Exception e) {
+                        }
+                break;
+        }
+    }
+    
     public int montoIngreso(){ 
      int n= 0;
         res = conexiones.conexion.Consulta("select dbo.consultaAdministradorIngreso ()");

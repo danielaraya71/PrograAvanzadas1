@@ -97,6 +97,10 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jTextFieldTipoPedido = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jTextFieldCantidad = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jTextFieldIDMedicamento = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
         jComboBoxEscogerSucursal = new javax.swing.JComboBox<>();
@@ -182,6 +186,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonMejoresClientes.setText("Tres mejores clientes");
+        jButtonMejoresClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMejoresClientesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Sucursal");
 
@@ -191,12 +200,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         jTableListaPedidos1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido"
+                "idCliente", "Nombre", "Apellido", "Monto Gastado"
             }
         ));
         jScrollPane6.setViewportView(jTableListaPedidos1);
@@ -369,6 +378,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Special = 1, Regular=0");
 
+        jLabel31.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Cantidad");
+
+        jLabel32.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Medicamento");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -393,10 +410,21 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldIDOrder)
-                                .addComponent(jTextFieldClientID)
-                                .addComponent(jTextFieldPharmacy, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldIDOrder)
+                                    .addComponent(jTextFieldClientID)
+                                    .addComponent(jTextFieldPharmacy, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                                .addGap(227, 227, 227)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel31)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel32)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldIDMedicamento))))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jTextFieldFIMES3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,7 +432,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jTextFieldFIDIA2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldFIANIO3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(567, Short.MAX_VALUE))
+                        .addContainerGap(154, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton7)
@@ -416,7 +444,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 300, Short.MAX_VALUE))))
+                        .addGap(0, 303, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,17 +457,23 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel21)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel22))
-                    .addComponent(jTextFieldIDOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldIDOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel31)
+                        .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(jTextFieldFIMES3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldFIDIA2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldFIANIO3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
-                    .addComponent(jTextFieldClientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldClientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel32)
+                        .addComponent(jTextFieldIDMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
@@ -465,7 +499,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                             .addComponent(jTextFieldPharmacy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
                         .addComponent(jButton7)))
-                .addGap(40, 164, Short.MAX_VALUE))
+                .addGap(40, 198, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Módulo Clientes", jPanel3);
@@ -1044,6 +1078,26 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         }
     }
     
+    public void consultaMejoresCliente(){
+           DefaultTableModel modelo = (DefaultTableModel) jTableListaPedidos1.getModel();
+            modelo.setRowCount(0);
+            
+           res =conexiones.conexion.Consulta("select * from topClients ('"+ jTextFechaInicial.getText()+"','"+jTextFechaFinal.getText()+"')");
+           try {
+               while (res.next()){
+                     Vector vec = new Vector();
+                     vec.add(res.getInt(1));
+                     vec.add(res.getString(2));
+                     vec.add(res.getString(3));
+                     vec.add(res.getInt(4));
+                     modelo.addRow(vec);
+                     jTableListaPedidos1.setModel(modelo);
+                }
+           }   
+                catch (Exception e) {
+                }
+    }
+    
     public int montoIngreso(){ 
      int n= 0;
         res = conexiones.conexion.Consulta("select dbo.consultaAdministradorIngreso ()");
@@ -1249,6 +1303,7 @@ CargarListadoTipoMes () ;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFIANIO3ActionPerformed
     Pedido pedido = new Pedido();
+    orderDrug orderdrug =  new orderDrug();
     procedimientos procedimiento= new procedimientos();
     
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1273,11 +1328,35 @@ CargarListadoTipoMes () ;
                     + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE);
         }
         
+        //       -----------------------------------------------------------------------------------------
+                   
+        orderdrug.setIdPharmacy(Integer.parseInt(jTextFieldPharmacy.getText().toString()));
+        orderdrug.setIdOrder(Integer.parseInt(jTextFieldIDOrder.getText().toString()));
+        orderdrug.setIdDrug(Integer.parseInt(jTextFieldIDMedicamento.getText().toString()));
+        orderdrug.setQuantity(Integer.parseInt(jTextFieldCantidad.getText().toString()));
+
+        
+        //Se hace la insercion en la tabla vehiculo en POO
+        int exito1 = 0;
+        exito1= procedimiento.AgregarOrderDrugs (orderdrug.getIdPharmacy(), orderdrug.getIdOrder(),
+                orderdrug.getIdDrug(),orderdrug.getQuantity());
+        if(exito1>0){
+            JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente",
+                    "Éxito en la operación", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "Los datos no se pudieron guardar\n"
+                    + "Inténtelo nuevamente", "Error en la operación", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButtonMontoRecauTipoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMontoRecauTipoPedidoActionPerformed
         consultaGerente2();
     }//GEN-LAST:event_jButtonMontoRecauTipoPedidoActionPerformed
+
+    private void jButtonMejoresClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMejoresClientesActionPerformed
+        consultaMejoresCliente();
+    }//GEN-LAST:event_jButtonMejoresClientesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
@@ -1305,6 +1384,8 @@ CargarListadoTipoMes () ;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -1343,6 +1424,7 @@ CargarListadoTipoMes () ;
     private javax.swing.JTextField jTextFechaFinal;
     private javax.swing.JTextField jTextFechaInicial;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldCantidad;
     private javax.swing.JTextField jTextFieldClientID;
     private javax.swing.JTextField jTextFieldEstadoPedido;
     private javax.swing.JTextField jTextFieldFFANIO;
@@ -1362,6 +1444,7 @@ CargarListadoTipoMes () ;
     private javax.swing.JTextField jTextFieldFIMES1;
     private javax.swing.JTextField jTextFieldFIMES2;
     private javax.swing.JTextField jTextFieldFIMES3;
+    private javax.swing.JTextField jTextFieldIDMedicamento;
     private javax.swing.JTextField jTextFieldIDOrder;
     private javax.swing.JTextField jTextFieldPharmacy;
     private javax.swing.JTextField jTextFieldSucursal;

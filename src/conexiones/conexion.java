@@ -14,8 +14,8 @@ public class conexion {
     //Metodo para establecer conexion con la base de datos
     public static Connection establecerConexion(){
 
-    //    String url= "jdbc:sqlserver://LAPTOP-VB4EU9DH\\OASIS:1433;databaseName=Pharmacy"; //URL DANIEL
-        String url= "jdbc:sqlserver://LAPTOP-FPUD71GJ:1433;databaseName=Pharmacy1"; // URL montero
+        String url= "jdbc:sqlserver://LAPTOP-VB4EU9DH\\OASIS2:1433;databaseName=Pharmacy"; //URL DANIEL
+        //String url= "jdbc:sqlserver://LAPTOP-FPUD71GJ:1433;databaseName=Pharmacy1"; // URL montero
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         }

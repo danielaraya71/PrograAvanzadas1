@@ -919,44 +919,28 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private void jTextFechaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFechaFinalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFechaFinalActionPerformed
-public void CargarMontoTotal() {
-         String Sucursal = (jComboBoxEscogerSucursal.getSelectedItem().toString() );
-        String Consulta ;
-        switch (Sucursal){
-            case "Heredia":
-                Consulta = "select sum (totalAmount) from client_orderHeredia";
-                res =conexiones.conexion.Consulta(Consulta);
-                try {
-                    while (res.next()){
-                         jLabelMontoRecaudadoAdmi2.setText(""+res.getString("sum (totalAmount)")+"");
-                     }
-                }   
-                     catch (Exception e) {
-                        }
-                break;
-            case "San José":
-                Consulta = "select sum (totalAmount) from client_orderSanJose";
-                res =conexiones.conexion.Consulta(Consulta);
-                    jLabelMontoRecaudadoAdmi2.setText(""+res+"");
-           
-                break;
-            case "Cartago":
-                Consulta = "select sum (totalAmount) from client_orderCartago";
-                res =conexiones.conexion.Consulta(Consulta);
-                try {
-                    while (res.next()){
-                         jLabelMontoRecaudadoAdmi2.setText(""+res.getString("totalAmount")+"");
-                     }
-                }   
-                     catch (Exception e) {
-                        }
-                break;
+    public int montoIngreso(){ 
+     int n= 0;
+        res = conexiones.conexion.Consulta("select dbo.consultaAdministradorIngreso ()");
+        try {
+            // chequeo que el result set no sea vacío, moviendo el cursor a la
+            // primer fila. (El cursor inicia antes de la primer fila)
+            if(res.next()) {
+                //Si hay resultados obtengo el valor.
+                n= res.getInt(1);
+               
+            }  } catch (SQLException ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-     }
-    private void jButtonDineroRecaudadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDineroRecaudadoActionPerformed
-        CargarMontoTotal() ;
   
+      jLabelMontoRecaudadoAdmi2.setText(""+n+"");
+        return n;
+     
+     
+}
+          
+    private void jButtonDineroRecaudadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDineroRecaudadoActionPerformed
+        montoIngreso();
     }//GEN-LAST:event_jButtonDineroRecaudadoActionPerformed
 public int contar_num_ordenes(){ 
      int n= 0;
